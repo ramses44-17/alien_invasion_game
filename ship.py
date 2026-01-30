@@ -2,11 +2,11 @@ import pygame
 #le parametre ai_game c'est n'est rien d'autre que le parametre self de la classe où cette classe sera importé, ça permet à cette classe d'appeler les methodes de l'autre classe
 class Ship:
     """A class to manage the ship."""
-    def __init__(self, ai_game):
+    def __init__(self, main_game):
         """Initialize the ship and set its starting position."""
-        self.screen = ai_game.screen
-        self.settings = ai_game.settings
-        self.screen_rect = ai_game.screen.get_rect()
+        self.screen = main_game.screen
+        self.settings = main_game.settings
+        self.screen_rect = main_game.screen.get_rect()
         # Load the ship image and get its rect.
         self.image = pygame.image.load('images/ship.bmp')
         self.rect = self.image.get_rect()
