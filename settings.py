@@ -8,3 +8,10 @@ class Settings:
         self.bg_color = (230, 230, 230)
         # parametres du vaisseau
         self.ship_speed = 2
+        # Bullet settings
+        self.bullet_speed = 2.0
+        self.bullet_width = 3
+        self.bullet_height = 15
+        self.bullet_color = (60, 60, 60)
+        # Nombres des balles acceptés
+        self.bullets_allowed = 3
