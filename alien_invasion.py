@@ -55,25 +55,32 @@ class AlienInvasion:
             self.ship.blitme()
             # Make the most recently drawn screen visible.
             pygame.display.flip()
+    def _update_bullets(self):
+        """
+        mettre à jour la position des balles au fur et à mesure de l'éxecution du code
+        """
+        self.bullets.update()
+        # Get rid of bullets that have disappeared.
+        for bullet in self.bullets.copy():
+            if bullet.rect.bottom <= 0:
+                self.bullets.remove(bullet)
     def run_game(self):
-        """Start the main loop for the game."""
+        """
+        Start the main loop for the game.
+        """
         while True:
             self._check_event()
             self.ship.update()
-            self.bullets.update()
-            # Get rid of bullets that have disappeared.
-            for bullet in self.bullets.copy():
-                 if bullet.rect.bottom <= 0:
-                    self.bullets.remove(bullet)
-                    print(len(self.bullets))
+            self._update_bullets()
             self._update_screen()
             self.clock.tick(60)
     def _fire_bullet(self):
         """
         Cree une nouvelle balle et l'ajoute dans le groupe des balles
         """
-        new_bullet = Bullet(self)
-        self.bullets.add(new_bullet)
+        if len(self.bullets) < self.settings.bullets_allowed:
+            new_bullet = Bullet(self)
+            self.bullets.add(new_bullet)
 if __name__ == '__main__':
     # Make a game instance, and run the game.
     ai = AlienInvasion()
