@@ -6,7 +6,7 @@ class Ship:
         """Initialize the ship and set its starting position."""
         self.screen = main_game.screen
         self.settings = main_game.settings
-        self.screen_rect = main_game.screen.get_rect()
+        self.screen_rect = self.screen.get_rect()
         # Load the ship image and get its rect.
         self.image = pygame.image.load('images/ship.bmp')
         self.rect = self.image.get_rect()
