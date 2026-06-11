@@ -16,7 +16,7 @@ class AlienInvasion:
         self.settings = Settings()
         # represente la surface du jeu
         self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height))
-        # # Passer en full screen
+        # # Passer en full screen   
         # self.screen = pygame.display.set_mode((0,0),pygame.FULLSCREEN)
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
@@ -90,7 +90,27 @@ class AlienInvasion:
     def _create_fleet(self):
         """Creer un alien"""
         alien = Alien(self)
-        self.aliens.add(alien)
+        screen_width = self.settings.screen_width
+        screen_height = self.settings.screen_height
+        avaible_screen_width=screen_width
+        avaible_screen_height=screen_height
+        alien_width,alien_height=alien.rect.size
+        current_x,current_y=alien_width,alien_height
+        while alien_height<avaible_screen_height:
+            avaible_screen_width = screen_width
+            while alien_width < avaible_screen_width:
+                self._create_alien(current_x,current_y)
+                avaible_screen_width=screen_width-current_x-2*alien_width
+                current_x+=2*alien_width
+            avaible_screen_height=screen_height-current_y-3*alien_height-2*self.ship.rect.height
+            current_y+=alien_height
+            current_x=alien_width
+    def _create_alien(self,x_position,y_position):
+        new_alien = Alien(self)
+        new_alien.x=x_position
+        new_alien.rect.x=x_position
+        new_alien.rect.y=y_position
+        self.aliens.add(new_alien)
 if __name__ == '__main__':
     # Make a game instance, and run the game.
     ai = AlienInvasion()
