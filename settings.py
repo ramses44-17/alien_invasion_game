@@ -15,3 +15,4 @@ class Settings:
         self.bullet_color = (60, 60, 60)
         # Nombres des balles acceptés
         self.bullets_allowed = 3
+        self.alien_speed=0.5

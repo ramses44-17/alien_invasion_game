@@ -59,7 +59,6 @@ class AlienInvasion:
             # Afficher le vaisseau
             self.ship.blitme()
             # Make the most recently drawn screen visible.
-            
             pygame.display.flip()
     def _update_bullets(self):
         """
@@ -78,6 +77,7 @@ class AlienInvasion:
             self._check_event()
             self.ship.update()
             self._update_bullets()
+            self.update_alien()
             self._update_screen()
             self.clock.tick(60)
     def _fire_bullet(self):
@@ -111,6 +111,13 @@ class AlienInvasion:
         new_alien.rect.x=x_position
         new_alien.rect.y=y_position
         self.aliens.add(new_alien)
+    def update_alien(self):
+        for alien in self.aliens.sprites():
+                alien.update()
+                if self.aliens.sprites()[-1].rect.right > self.screen.get_rect().right:
+                    alien.moving_right=False
+                if self.aliens.sprites()[0].rect.left < self.screen.get_rect().left:
+                   alien.moving_right=True
 if __name__ == '__main__':
     # Make a game instance, and run the game.
     ai = AlienInvasion()
