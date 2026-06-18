@@ -15,4 +15,6 @@ class Settings:
         self.bullet_color = (60, 60, 60)
         # Nombres des balles acceptés
         self.bullets_allowed = 3
-        self.alien_speed=0.5
+        self.fleet_direction = 1  # 1 = droite, -1 = gauche
+        self.alien_speed=2
+        self.fleet_drop_speed = 10
